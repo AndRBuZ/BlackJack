@@ -1,6 +1,3 @@
-require_relative 'player'
-require_relative 'game'
-
 CARD_SUIT = %i[♥ ♣ ♦ ♠].freeze
 
 CARDS = {

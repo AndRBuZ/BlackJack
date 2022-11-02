@@ -43,7 +43,16 @@ class Game
     user_choice = gets.chomp.to_i
     case user_choice
     when 1
-      hit(@user)
+      if user.hand.size == 2
+        hit(@user)
+        hand(user)
+        print "new value: #{card_sum(user)} \n"
+        puts "Dealer's move"
+        dealer_move
+      else
+        puts "You already have maximum number of cards, opening hand"
+        open_hand
+      end
     when 2
       dealer_move
     when 3
@@ -76,6 +85,7 @@ class Game
 
   def hit(player)
     player.hand << deck.shift unless player.hand.size > 2
+    open_hand if dealer.hand.size == 3 && user.hand.size == 3
   end
 
   def card_sum(player)
